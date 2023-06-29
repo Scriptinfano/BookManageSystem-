@@ -1,0 +1,419 @@
+JFDML JFormDesigner: "8.1.0.0.283" Java: "17.0.7" encoding: "UTF-8"
+
+new FormModel {
+	contentType: "form/swing"
+	root: new FormRoot {
+		add( new FormWindow( "javax.swing.JDialog", new FormLayoutManager( class java.awt.BorderLayout ) ) {
+			name: "this"
+			"title": "查询明细"
+			"resizable": false
+			"modalExclusionType": enum java.awt.Dialog$ModalExclusionType APPLICATION_EXCLUDE
+			"modalityType": enum java.awt.Dialog$ModalityType APPLICATION_MODAL
+			add( new FormContainer( "javax.swing.JPanel", new FormLayoutManager( class java.awt.BorderLayout ) ) {
+				name: "dialogPane"
+				"border": new javax.swing.border.EmptyBorder( 12, 12, 12, 12 )
+				add( new FormContainer( "javax.swing.JPanel", new FormLayoutManager( class javax.swing.BoxLayout ) {
+					"axis": 0
+				} ) {
+					name: "contentPanel"
+					add( new FormContainer( "javax.swing.JPanel", new FormLayoutManager( class javax.swing.BoxLayout ) {
+						"axis": 1
+					} ) {
+						name: "panel19"
+						add( new FormContainer( "javax.swing.JPanel", new FormLayoutManager( class java.awt.FlowLayout ) ) {
+							name: "panel21"
+							add( new FormComponent( "javax.swing.JLabel" ) {
+								name: "label16"
+								"text": "左侧输入起始时间  右侧输入终止时间"
+							} )
+						} )
+						add( new FormContainer( "javax.swing.JPanel", new FormLayoutManager( class java.awt.FlowLayout ) ) {
+							name: "panel5"
+							add( new FormComponent( "javax.swing.JLabel" ) {
+								name: "label1"
+								"text": "选择查询进货订单还是销售订单"
+							} )
+							add( new FormComponent( "javax.swing.JComboBox" ) {
+								name: "saleOrPurchaseComboBox"
+								"model": new javax.swing.DefaultComboBoxModel {
+									selectedItem: "销售"
+									addElement( "销售" )
+									addElement( "进货" )
+								}
+							} )
+						} )
+						add( new FormContainer( "javax.swing.JPanel", new FormLayoutManager( class java.awt.FlowLayout ) ) {
+							name: "panel20"
+							add( new FormContainer( "javax.swing.JPanel", new FormLayoutManager( class javax.swing.BoxLayout ) {
+								"axis": 1
+							} ) {
+								name: "panel1"
+								add( new FormContainer( "javax.swing.JPanel", new FormLayoutManager( class java.awt.FlowLayout ) ) {
+									name: "panel3"
+									add( new FormComponent( "javax.swing.JLabel" ) {
+										name: "label4"
+										"text": "年"
+									} )
+									add( new FormComponent( "javax.swing.JTextField" ) {
+										name: "beginYearTextField"
+										"columns": 5
+									} )
+								} )
+								add( new FormContainer( "javax.swing.JPanel", new FormLayoutManager( class java.awt.FlowLayout ) ) {
+									name: "panel4"
+									add( new FormComponent( "javax.swing.JLabel" ) {
+										name: "label5"
+										"text": "月"
+									} )
+									add( new FormComponent( "javax.swing.JComboBox" ) {
+										name: "beginMonthComboBox"
+										"model": &DefaultComboBoxModel0 new javax.swing.DefaultComboBoxModel {
+											selectedItem: "1"
+											addElement( "1" )
+											addElement( "2" )
+											addElement( "3" )
+											addElement( "4" )
+											addElement( "5" )
+											addElement( "6" )
+											addElement( "7" )
+											addElement( "8" )
+											addElement( "9" )
+											addElement( "10" )
+											addElement( "11" )
+											addElement( "12" )
+										}
+										addEvent( new FormEvent( "java.awt.event.ActionListener", "actionPerformed", "beginMonthChange", true ) )
+									} )
+								} )
+								add( new FormContainer( "javax.swing.JPanel", new FormLayoutManager( class java.awt.FlowLayout ) ) {
+									name: "panel8"
+									add( new FormComponent( "javax.swing.JLabel" ) {
+										name: "label6"
+										"text": "日"
+									} )
+									add( new FormComponent( "javax.swing.JComboBox" ) {
+										name: "beginDayComboBox"
+										"model": &DefaultComboBoxModel1 new javax.swing.DefaultComboBoxModel {
+											selectedItem: "1"
+											addElement( "1" )
+										}
+									} )
+								} )
+								add( new FormContainer( "javax.swing.JPanel", new FormLayoutManager( class java.awt.FlowLayout ) ) {
+									name: "panel9"
+									add( new FormComponent( "javax.swing.JLabel" ) {
+										name: "label7"
+										"text": "小时"
+									} )
+									add( new FormComponent( "javax.swing.JComboBox" ) {
+										name: "beginHourComboBox"
+										"model": &DefaultComboBoxModel2 new javax.swing.DefaultComboBoxModel {
+											selectedItem: "1"
+											addElement( "1" )
+											addElement( "2" )
+											addElement( "3" )
+											addElement( "4" )
+											addElement( "5" )
+											addElement( "6" )
+											addElement( "7" )
+											addElement( "8" )
+											addElement( "9" )
+											addElement( "10" )
+											addElement( "11" )
+											addElement( "12" )
+											addElement( "13" )
+											addElement( "14" )
+											addElement( "15" )
+											addElement( "16" )
+											addElement( "17" )
+											addElement( "18" )
+											addElement( "19" )
+											addElement( "20" )
+											addElement( "21" )
+											addElement( "22" )
+											addElement( "23" )
+											addElement( "24" )
+										}
+									} )
+								} )
+								add( new FormContainer( "javax.swing.JPanel", new FormLayoutManager( class java.awt.FlowLayout ) ) {
+									name: "panel10"
+									add( new FormComponent( "javax.swing.JLabel" ) {
+										name: "label8"
+										"text": "分钟"
+									} )
+									add( new FormComponent( "javax.swing.JComboBox" ) {
+										name: "beignMiniuteComboBox"
+										"model": &DefaultComboBoxModel3 new javax.swing.DefaultComboBoxModel {
+											selectedItem: "1"
+											addElement( "1" )
+											addElement( "2" )
+											addElement( "3" )
+											addElement( "4" )
+											addElement( "5" )
+											addElement( "6" )
+											addElement( "7" )
+											addElement( "8" )
+											addElement( "9" )
+											addElement( "10" )
+											addElement( "11" )
+											addElement( "12" )
+											addElement( "13" )
+											addElement( "14" )
+											addElement( "15" )
+											addElement( "16" )
+											addElement( "17" )
+											addElement( "18" )
+											addElement( "19" )
+											addElement( "20" )
+											addElement( "21" )
+											addElement( "22" )
+											addElement( "23" )
+											addElement( "24" )
+											addElement( "25" )
+											addElement( "26" )
+											addElement( "27" )
+											addElement( "28" )
+											addElement( "29" )
+											addElement( "30" )
+											addElement( "31" )
+											addElement( "32" )
+											addElement( "33" )
+											addElement( "34" )
+											addElement( "35" )
+											addElement( "36" )
+											addElement( "37" )
+											addElement( "38" )
+											addElement( "39" )
+											addElement( "40" )
+											addElement( "41" )
+											addElement( "42" )
+											addElement( "43" )
+											addElement( "44" )
+											addElement( "45" )
+											addElement( "46" )
+											addElement( "47" )
+											addElement( "48" )
+											addElement( "49" )
+											addElement( "50" )
+											addElement( "51" )
+											addElement( "52" )
+											addElement( "53" )
+											addElement( "54" )
+											addElement( "55" )
+											addElement( "56" )
+											addElement( "57" )
+											addElement( "58" )
+											addElement( "59" )
+											addElement( "60" )
+										}
+									} )
+								} )
+								add( new FormContainer( "javax.swing.JPanel", new FormLayoutManager( class java.awt.FlowLayout ) ) {
+									name: "panel11"
+									add( new FormComponent( "javax.swing.JLabel" ) {
+										name: "label9"
+										"text": "秒"
+									} )
+									add( new FormComponent( "javax.swing.JComboBox" ) {
+										name: "beginSecondComboBox"
+										"model": &DefaultComboBoxModel4 new javax.swing.DefaultComboBoxModel {
+											selectedItem: "1"
+											addElement( "1" )
+											addElement( "2" )
+											addElement( "3" )
+											addElement( "4" )
+											addElement( "5" )
+											addElement( "6" )
+											addElement( "7" )
+											addElement( "8" )
+											addElement( "9" )
+											addElement( "10" )
+											addElement( "11" )
+											addElement( "12" )
+											addElement( "13" )
+											addElement( "14" )
+											addElement( "15" )
+											addElement( "16" )
+											addElement( "17" )
+											addElement( "18" )
+											addElement( "19" )
+											addElement( "20" )
+											addElement( "21" )
+											addElement( "22" )
+											addElement( "23" )
+											addElement( "24" )
+											addElement( "25" )
+											addElement( "26" )
+											addElement( "27" )
+											addElement( "28" )
+											addElement( "29" )
+											addElement( "30" )
+											addElement( "31" )
+											addElement( "32" )
+											addElement( "33" )
+											addElement( "34" )
+											addElement( "35" )
+											addElement( "36" )
+											addElement( "37" )
+											addElement( "38" )
+											addElement( "39" )
+											addElement( "40" )
+											addElement( "41" )
+											addElement( "42" )
+											addElement( "43" )
+											addElement( "44" )
+											addElement( "45" )
+											addElement( "46" )
+											addElement( "47" )
+											addElement( "48" )
+											addElement( "49" )
+											addElement( "50" )
+											addElement( "51" )
+											addElement( "52" )
+											addElement( "53" )
+											addElement( "54" )
+											addElement( "55" )
+											addElement( "56" )
+											addElement( "57" )
+											addElement( "58" )
+											addElement( "59" )
+											addElement( "60" )
+										}
+									} )
+								} )
+							} )
+							add( new FormContainer( "javax.swing.JPanel", new FormLayoutManager( class javax.swing.BoxLayout ) {
+								"axis": 1
+							} ) {
+								name: "panel12"
+								add( new FormContainer( "javax.swing.JPanel", new FormLayoutManager( class java.awt.FlowLayout ) ) {
+									name: "panel13"
+									add( new FormComponent( "javax.swing.JLabel" ) {
+										name: "label10"
+										"text": "年"
+									} )
+									add( new FormComponent( "javax.swing.JTextField" ) {
+										name: "endYearTextField"
+										"columns": 5
+									} )
+								} )
+								add( new FormContainer( "javax.swing.JPanel", new FormLayoutManager( class java.awt.FlowLayout ) ) {
+									name: "panel14"
+									add( new FormComponent( "javax.swing.JLabel" ) {
+										name: "label11"
+										"text": "月"
+									} )
+									add( new FormComponent( "javax.swing.JComboBox" ) {
+										name: "endMonthComboBox"
+										"model": #DefaultComboBoxModel0
+										addEvent( new FormEvent( "java.awt.event.ActionListener", "actionPerformed", "endMonthChange", true ) )
+									} )
+								} )
+								add( new FormContainer( "javax.swing.JPanel", new FormLayoutManager( class java.awt.FlowLayout ) ) {
+									name: "panel15"
+									add( new FormComponent( "javax.swing.JLabel" ) {
+										name: "label12"
+										"text": "日"
+									} )
+									add( new FormComponent( "javax.swing.JComboBox" ) {
+										name: "endDayComboBox"
+										"model": #DefaultComboBoxModel1
+									} )
+								} )
+								add( new FormContainer( "javax.swing.JPanel", new FormLayoutManager( class java.awt.FlowLayout ) ) {
+									name: "panel16"
+									add( new FormComponent( "javax.swing.JLabel" ) {
+										name: "label13"
+										"text": "小时"
+									} )
+									add( new FormComponent( "javax.swing.JComboBox" ) {
+										name: "endHourComboBox"
+										"model": #DefaultComboBoxModel2
+									} )
+								} )
+								add( new FormContainer( "javax.swing.JPanel", new FormLayoutManager( class java.awt.FlowLayout ) ) {
+									name: "panel17"
+									add( new FormComponent( "javax.swing.JLabel" ) {
+										name: "label14"
+										"text": "分钟"
+									} )
+									add( new FormComponent( "javax.swing.JComboBox" ) {
+										name: "endMiniuteComboBox"
+										"model": #DefaultComboBoxModel3
+									} )
+								} )
+								add( new FormContainer( "javax.swing.JPanel", new FormLayoutManager( class java.awt.FlowLayout ) ) {
+									name: "panel18"
+									add( new FormComponent( "javax.swing.JLabel" ) {
+										name: "label15"
+										"text": "秒"
+									} )
+									add( new FormComponent( "javax.swing.JComboBox" ) {
+										name: "endSecondComboBox"
+										"model": #DefaultComboBoxModel4
+									} )
+								} )
+							} )
+						} )
+						add( new FormContainer( "javax.swing.JPanel", new FormLayoutManager( class java.awt.FlowLayout ) ) {
+							name: "panel22"
+							add( new FormComponent( "javax.swing.JButton" ) {
+								name: "searchButton"
+								"text": "查询"
+								addEvent( new FormEvent( "java.awt.event.ActionListener", "actionPerformed", "searchLog", true ) )
+							} )
+						} )
+					} )
+					add( new FormContainer( "javax.swing.JPanel", new FormLayoutManager( class javax.swing.BoxLayout ) {
+						"axis": 1
+					} ) {
+						name: "panel2"
+						add( new FormContainer( "javax.swing.JPanel", new FormLayoutManager( class java.awt.FlowLayout ) ) {
+							name: "panel7"
+							add( new FormComponent( "javax.swing.JLabel" ) {
+								name: "label3"
+								"text": "筛选之后的明细表"
+							} )
+						} )
+						add( new FormContainer( "javax.swing.JPanel", new FormLayoutManager( class java.awt.FlowLayout ) ) {
+							name: "panel6"
+							add( new FormContainer( "javax.swing.JScrollPane", new FormLayoutManager( class javax.swing.JScrollPane ) ) {
+								name: "scrollPane1"
+								add( new FormComponent( "javax.swing.JTable" ) {
+									name: "logTable"
+								} )
+							} )
+						} )
+					} )
+				}, new FormLayoutConstraints( class java.lang.String ) {
+					"value": "Center"
+				} )
+				add( new FormContainer( "javax.swing.JPanel", new FormLayoutManager( class java.awt.GridBagLayout ) {
+					"$columnSpecs": "0:1.0, 80"
+					"$rowSpecs": "0"
+					"$hGap": 5
+					"$vGap": 5
+				} ) {
+					name: "buttonBar"
+					"border": new javax.swing.border.EmptyBorder( 12, 0, 0, 0 )
+					add( new FormComponent( "javax.swing.JButton" ) {
+						name: "exitButton"
+						"text": "退出查询"
+						addEvent( new FormEvent( "java.awt.event.ActionListener", "actionPerformed", "cancel", true ) )
+					}, new FormLayoutConstraints( class com.jformdesigner.runtime.GridBagConstraintsEx ) {
+						"gridx": 1
+						"gridy": 0
+					} )
+				}, new FormLayoutConstraints( class java.lang.String ) {
+					"value": "South"
+				} )
+			}, new FormLayoutConstraints( class java.lang.String ) {
+				"value": "Center"
+			} )
+		}, new FormLayoutConstraints( null ) {
+			"location": new java.awt.Point( 0, 0 )
+			"size": new java.awt.Dimension( 715, 570 )
+		} )
+	}
+}

@@ -1,0 +1,162 @@
+JFDML JFormDesigner: "8.1.0.0.283" Java: "17.0.7" encoding: "UTF-8"
+
+new FormModel {
+	contentType: "form/swing"
+	root: new FormRoot {
+		add( new FormWindow( "javax.swing.JDialog", new FormLayoutManager( class java.awt.BorderLayout ) ) {
+			name: "this"
+			"modalExclusionType": enum java.awt.Dialog$ModalExclusionType APPLICATION_EXCLUDE
+			"title": "编辑书籍信息"
+			"resizable": false
+			add( new FormContainer( "javax.swing.JPanel", new FormLayoutManager( class java.awt.BorderLayout ) ) {
+				name: "dialogPane"
+				"border": new javax.swing.border.EmptyBorder( 12, 12, 12, 12 )
+				add( new FormContainer( "javax.swing.JPanel", new FormLayoutManager( class java.awt.GridLayout ) {
+					"columns": 1
+					"rows": 6
+					"hgap": 5
+					"vgap": 5
+				} ) {
+					name: "contentPanel"
+					add( new FormContainer( "javax.swing.JPanel", new FormLayoutManager( class java.awt.FlowLayout ) ) {
+						name: "panel1"
+						add( new FormComponent( "javax.swing.JLabel" ) {
+							name: "label1"
+							"text": "输入要编辑的书的ID号码"
+						} )
+						add( new FormComponent( "javax.swing.JTextField" ) {
+							name: "bookIdTextField"
+							"columns": 20
+						} )
+					} )
+					add( new FormContainer( "javax.swing.JPanel", new FormLayoutManager( class java.awt.FlowLayout ) ) {
+						name: "panel2"
+						add( new FormComponent( "javax.swing.JLabel" ) {
+							name: "label2"
+							"text": "输入修改之后的书名"
+						} )
+						add( new FormComponent( "javax.swing.JTextField" ) {
+							name: "bookNameTextField"
+							"columns": 20
+						} )
+						add( new FormComponent( "javax.swing.JButton" ) {
+							name: "confirmModifyBookName"
+							"text": "确认修改"
+							addEvent( new FormEvent( "java.awt.event.ActionListener", "actionPerformed", "confirmModifyBookName", true ) )
+						} )
+					} )
+					add( new FormContainer( "javax.swing.JPanel", new FormLayoutManager( class java.awt.FlowLayout ) ) {
+						name: "panel3"
+						add( new FormComponent( "javax.swing.JLabel" ) {
+							name: "label3"
+							"text": "输入修改之后的书的类型"
+						} )
+						add( new FormComponent( "javax.swing.JTextField" ) {
+							name: "bookTypeTextField"
+							"columns": 20
+						} )
+						add( new FormComponent( "javax.swing.JButton" ) {
+							name: "confirmModifyBookType"
+							"text": "确认修改"
+							addEvent( new FormEvent( "java.awt.event.ActionListener", "actionPerformed", "confirmModifyBookType", true ) )
+						} )
+					} )
+					add( new FormContainer( "javax.swing.JPanel", new FormLayoutManager( class java.awt.FlowLayout ) ) {
+						name: "panel4"
+						add( new FormComponent( "javax.swing.JLabel" ) {
+							name: "label4"
+							"text": "输入修改之后的书的作者"
+						} )
+						add( new FormComponent( "javax.swing.JTextField" ) {
+							name: "bookAuthorTextField"
+							"columns": 20
+						} )
+						add( new FormComponent( "javax.swing.JButton" ) {
+							name: "confirmModifyBookAuthor"
+							"text": "确认修改"
+							addEvent( new FormEvent( "java.awt.event.ActionListener", "actionPerformed", "confirmModifyBookAuthor", true ) )
+						} )
+					} )
+					add( new FormContainer( "javax.swing.JPanel", new FormLayoutManager( class java.awt.FlowLayout ) ) {
+						name: "panel5"
+						add( new FormComponent( "javax.swing.JLabel" ) {
+							name: "label5"
+							"text": "输入修改之后的书的出版商"
+						} )
+						add( new FormComponent( "javax.swing.JTextField" ) {
+							name: "bookPublisherTextField"
+							"columns": 20
+						} )
+						add( new FormComponent( "javax.swing.JButton" ) {
+							name: "confirmModifyBookPublisher"
+							"text": "确认修改"
+							addEvent( new FormEvent( "java.awt.event.ActionListener", "actionPerformed", "confirmModifyPublisher", true ) )
+						} )
+					} )
+					add( new FormContainer( "javax.swing.JPanel", new FormLayoutManager( class javax.swing.BoxLayout ) {
+						"axis": 1
+					} ) {
+						name: "panel6"
+						add( new FormContainer( "javax.swing.JPanel", new FormLayoutManager( class java.awt.FlowLayout ) ) {
+							name: "panel7"
+							add( new FormComponent( "javax.swing.JLabel" ) {
+								name: "label6"
+								"text": "输入备注"
+							} )
+							add( new FormComponent( "javax.swing.JButton" ) {
+								name: "confirmModifyContext"
+								"text": "确认修改"
+								addEvent( new FormEvent( "java.awt.event.ActionListener", "actionPerformed", "confirmModifyBookContext", true ) )
+							} )
+						} )
+						add( new FormContainer( "javax.swing.JScrollPane", new FormLayoutManager( class javax.swing.JScrollPane ) ) {
+							name: "scrollPane1"
+							add( new FormComponent( "javax.swing.JTextArea" ) {
+								name: "bookContextTextArea"
+								"rows": 2
+								"tabSize": 4
+								"columns": 50
+							} )
+						} )
+					} )
+				}, new FormLayoutConstraints( class java.lang.String ) {
+					"value": "Center"
+				} )
+				add( new FormContainer( "javax.swing.JPanel", new FormLayoutManager( class java.awt.GridBagLayout ) {
+					"$columnSpecs": "0:1.0, 80, 80"
+					"$rowSpecs": "0"
+					"$hGap": 5
+					"$vGap": 5
+				} ) {
+					name: "buttonBar"
+					"border": new javax.swing.border.EmptyBorder( 12, 0, 0, 0 )
+					add( new FormComponent( "javax.swing.JLabel" ) {
+						name: "label7"
+						"text": "备注：一次性全部输入以上内容，然后点击“一次性确认修改”按钮"
+					}, new FormLayoutConstraints( class com.jformdesigner.runtime.GridBagConstraintsEx ) )
+					add( new FormComponent( "javax.swing.JButton" ) {
+						name: "modifyAllButton"
+						"text": "一次性确认修改"
+						addEvent( new FormEvent( "java.awt.event.ActionListener", "actionPerformed", "modifyAll", true ) )
+					}, new FormLayoutConstraints( class com.jformdesigner.runtime.GridBagConstraintsEx ) {
+						"gridx": 1
+					} )
+					add( new FormComponent( "javax.swing.JButton" ) {
+						name: "finishButton"
+						"text": "取消"
+						addEvent( new FormEvent( "java.awt.event.ActionListener", "actionPerformed", "cancel", true ) )
+					}, new FormLayoutConstraints( class com.jformdesigner.runtime.GridBagConstraintsEx ) {
+						"gridx": 2
+					} )
+				}, new FormLayoutConstraints( class java.lang.String ) {
+					"value": "South"
+				} )
+			}, new FormLayoutConstraints( class java.lang.String ) {
+				"value": "Center"
+			} )
+		}, new FormLayoutConstraints( null ) {
+			"location": new java.awt.Point( 0, 0 )
+			"size": new java.awt.Dimension( 660, 580 )
+		} )
+	}
+}
