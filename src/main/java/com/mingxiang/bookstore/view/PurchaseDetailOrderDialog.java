@@ -55,12 +55,7 @@ public class PurchaseDetailOrderDialog extends JDialog {
             ResultSet resultSet = dao.query("SELECT * FROM newbookstore.bookpurchase_view");
             Utils.setTable(bookInfoTable,resultSet);
         } catch (SQLException exception) {
-            JOptionPane.showMessageDialog(this, exception.getMessage(), "数据库错误", JOptionPane.ERROR_MESSAGE);
-            try {
-                dao.deletePurchaseOrder(purchaseOrderId);
-            } catch (SQLException exception2) {
-                JOptionPane.showMessageDialog(this, exception2.getMessage(), "数据库错误", JOptionPane.ERROR_MESSAGE);
-            }
+            JOptionPane.showMessageDialog(this, exception.getMessage(), "数据库错误，初始化BookInfo表时出现错误", JOptionPane.ERROR_MESSAGE);
             System.exit(0);
         }
     }
@@ -98,30 +93,19 @@ public class PurchaseDetailOrderDialog extends JDialog {
                 }
 
             }
+            dao.setAutoCommit(false);
             try {
-                dao.getConnection().setAutoCommit(false);
                 dao.createPurchaseDetailOrder(new PurchaseDetailOrder(purchaseId, bookId, bookCount, purchasePrice));
                 dao.updateSalePrice(bookId, price);//更新图书的售价
             } catch (SQLException exception) {
                 JOptionPane.showMessageDialog(this, exception.getMessage()+"错误码："+exception.getErrorCode()+"，数据库错误状态："+exception.getSQLState(), "数据库错误", JOptionPane.ERROR_MESSAGE);
-                try {
-                    dao.getConnection().rollback();
-                } catch (SQLException exception1) {
-                    JOptionPane.showMessageDialog(this, exception1.getMessage(), "数据库错误", JOptionPane.ERROR_MESSAGE);
-                }
+                dao.rollback();
                 return;
             }
             //关闭子窗口之前先设置在该窗口关闭之后可以关闭父窗口
-            try {
-                dao.getConnection().commit();
-                dao.getConnection().setAutoCommit(true);
-            } catch (SQLException ex) {
-                JOptionPane.showMessageDialog(this, ex.getMessage(), "数据库错误", JOptionPane.ERROR_MESSAGE);
-                System.exit(0);
-            }
-
+            dao.commit();
+            dao.setAutoCommit(true);
             dispose();
-
         }
     }
 
@@ -147,7 +131,7 @@ public class PurchaseDetailOrderDialog extends JDialog {
         try {
             dao.deletePurchaseOrder(purchaseOrderId);
         } catch (SQLException exception) {
-            JOptionPane.showMessageDialog(this, exception.getMessage(), "数据库错误", JOptionPane.ERROR_MESSAGE);
+            JOptionPane.showMessageDialog(this, exception.getMessage(), "数据库错误，取消创建进货详单时无法删除与之关联的订单", JOptionPane.ERROR_MESSAGE);
             System.exit(0);
         }
         dispose();

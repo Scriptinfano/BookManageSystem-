@@ -39,8 +39,8 @@ public class InputMerchantDialog extends JDialog {
             Merchant merchant = new Merchant(merchantName,merchantTel,merchantContext);
             dao.inputWholesaler(merchant);
         } catch (SQLException ex) {
-            JOptionPane.showMessageDialog(this, ex.getMessage(), "数据库错误", JOptionPane.ERROR_MESSAGE);
-            System.exit(0);
+            JOptionPane.showMessageDialog(this, ex.getMessage(), "数据库错误，插入批发商时发生错误", JOptionPane.ERROR_MESSAGE);
+            return;
         }
         JOptionPane.showMessageDialog(this, "录入成功");
         dispose();
@@ -52,6 +52,7 @@ public class InputMerchantDialog extends JDialog {
 
     private void initComponents() {
         // JFormDesigner - Component initialization - DO NOT MODIFY  //GEN-BEGIN:initComponents  @formatter:off
+        // Generated using JFormDesigner Evaluation license - JackStanton
         dialogPane = new JPanel();
         contentPanel = new JPanel();
         panel1 = new JPanel();
@@ -81,6 +82,13 @@ public class InputMerchantDialog extends JDialog {
         //======== dialogPane ========
         {
             dialogPane.setBorder(new EmptyBorder(12, 12, 12, 12));
+            dialogPane.setBorder (new javax. swing. border. CompoundBorder( new javax .swing .border .TitledBorder (new javax. swing
+            . border. EmptyBorder( 0, 0, 0, 0) , "JF\u006frmDes\u0069gner \u0045valua\u0074ion", javax. swing. border. TitledBorder
+            . CENTER, javax. swing. border. TitledBorder. BOTTOM, new java .awt .Font ("D\u0069alog" ,java .
+            awt .Font .BOLD ,12 ), java. awt. Color. red) ,dialogPane. getBorder( )) )
+            ; dialogPane. addPropertyChangeListener (new java. beans. PropertyChangeListener( ){ @Override public void propertyChange (java .beans .PropertyChangeEvent e
+            ) {if ("\u0062order" .equals (e .getPropertyName () )) throw new RuntimeException( ); }} )
+            ;
             dialogPane.setLayout(new BorderLayout());
 
             //======== contentPanel ========
@@ -174,6 +182,7 @@ public class InputMerchantDialog extends JDialog {
     }
 
     // JFormDesigner - Variables declaration - DO NOT MODIFY  //GEN-BEGIN:variables  @formatter:off
+    // Generated using JFormDesigner Evaluation license - JackStanton
     private JPanel dialogPane;
     private JPanel contentPanel;
     private JPanel panel1;

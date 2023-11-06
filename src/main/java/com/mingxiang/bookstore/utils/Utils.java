@@ -1,5 +1,7 @@
 package com.mingxiang.bookstore.utils;
 
+import com.mingxiang.bookstore.view.renderer.MyTableRenderer;
+
 import javax.swing.*;
 import javax.swing.table.*;
 import java.sql.ResultSet;
@@ -33,6 +35,7 @@ public class Utils {
             tableDataModel.addRow(rowData);
         }
         table.setModel(tableDataModel);
+        table.setDefaultRenderer(Object.class, new MyTableRenderer());
 
     }
 
@@ -40,11 +43,7 @@ public class Utils {
         int theYear=Integer.parseInt(year);
         if (theYear % 4 == 0) {
             if (theYear % 100 == 0) {
-                if (theYear % 400 == 0) {
-                    return true; // 整百年能被400整除的是闰年
-                } else {
-                    return false;
-                }
+                return theYear % 400 == 0; // 整百年能被400整除的是闰年
             } else {
                 return true; // 非整百年能被4整除的是闰年
             }

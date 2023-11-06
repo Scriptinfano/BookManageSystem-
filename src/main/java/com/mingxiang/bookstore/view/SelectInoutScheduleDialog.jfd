@@ -382,6 +382,7 @@ new FormModel {
 								name: "scrollPane1"
 								add( new FormComponent( "javax.swing.JTable" ) {
 									name: "logTable"
+									"enabled": false
 								} )
 							} )
 						} )

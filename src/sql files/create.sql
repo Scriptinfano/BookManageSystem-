@@ -239,26 +239,28 @@ create procedure selectInoutSchedule_in(in dateBegin datetime, in dateEnd dateti
 begin
     SELECT *
     FROM newbookstore.inoutschedule
-    WHERE operateDate BETWEEN dateBegin AND dateEnd and inoutMark=1;
+    WHERE operateDate BETWEEN dateBegin AND dateEnd
+      and inoutMark = 1;
 end;
 
 create procedure selectInoutSchedule_out(in dateBegin datetime, in dateEnd datetime)
 begin
     SELECT *
     FROM newbookstore.inoutschedule
-    WHERE operateDate BETWEEN dateBegin AND dateEnd and inoutMark=0;
+    WHERE operateDate BETWEEN dateBegin AND dateEnd
+      and inoutMark = 0;
 end;
 
 /*****************创建视图*********************/
 
 -- 销售订单粗略视图
 create definer = root@localhost view sale_view as
-select newbookstore.salesorder.salesOrderId AS 销售订单号,
-       newbookstore.bookinfo.bookName AS 书名,
-       newbookstore.bookinfo.bookPrice AS 单价,
-       newbookstore.salesorder.salesDate AS 售卖日期,
+select newbookstore.salesorder.salesOrderId     AS 销售订单号,
+       newbookstore.bookinfo.bookName           AS 书名,
+       newbookstore.bookinfo.bookPrice          AS 单价,
+       newbookstore.salesorder.salesDate        AS 售卖日期,
        newbookstore.detailsalesorder.salesPrice AS 销售总价,
-       newbookstore.detailsalesorder.salesNum AS 售出数量
+       newbookstore.detailsalesorder.salesNum   AS 售出数量
 from newbookstore.salesorder
          join newbookstore.detailsalesorder
          join newbookstore.bookinfo
@@ -288,12 +290,37 @@ create view bookSale_view as
 select bookId, bookName, bookPrice, bookInventory
 from bookinfo;
 
+create view bookInfo_view as
+select bookId            as '书籍id',
+       bookName          as '书名',
+       bookType          as '书籍类型',
+       bookAuthor        as '书籍作者',
+       bookPublisher     as '书籍出版商',
+       bookContext       as '书籍备注',
+       bookPrice         as '售价',
+       bookPurchasePrice as '进价',
+       bookInventory     as '库存'
+from NewBookStore.bookinfo;
+
+create view customer_view as
+select customerid            as '客户id',
+       customerName          as '客户姓名',
+       customerTel          as '客户电话号码',
+       customerContext        as '客户备注'
+from NewBookStore.customer;
+
+create view merchant_view as
+select wholesalerId            as '批发商id',
+       wholesalerName          as '批发商名字',
+       wholesalerTel          as '批发商电话号码',
+       wholesalerContext        as '批发商备注'
+from NewBookStore.wholesaler;
 
 
-/**********************************触发器*********************************************************/
+         /**********************************触发器*********************************************************/
 
 -- 创建触发器：从最新的订货详单中更新图书的进价
-delimiter //
+         delimiter //
 create trigger trigger_update_price
     after insert
     on NewBookStore.detailpurchaseorder

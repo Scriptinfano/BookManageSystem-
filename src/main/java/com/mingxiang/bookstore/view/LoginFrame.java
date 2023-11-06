@@ -5,6 +5,7 @@ import com.mingxiang.bookstore.utils.BasicSettingSetter;
 import com.mingxiang.bookstore.utils.PathUtils;
 
 import javax.swing.*;
+import javax.swing.plaf.nimbus.NimbusLookAndFeel;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -82,7 +83,7 @@ public class LoginFrame extends JFrame {
     private void validatePassword(String password) {
         // 在这里进行密码验证逻辑
         if (!DatabaseDao.testConnection("root", password)) {
-            JOptionPane.showMessageDialog(this, "密码错误，登录失败","数据库登录",JOptionPane.ERROR_MESSAGE);
+            JOptionPane.showMessageDialog(this, "密码错误，登录失败", "数据库登录", JOptionPane.ERROR_MESSAGE);
         } else {
             JOptionPane.showMessageDialog(this, "登录成功！");
             new MainFrame().init();//跳转到主页面
@@ -93,6 +94,41 @@ public class LoginFrame extends JFrame {
     public static void main(String[] args) {
         SwingUtilities.invokeLater(new Runnable() {
             public void run() {
+                try {
+                    // 设置观感
+                    //UIManager.setLookAndFeel(new org.jvnet.substance.skin.SubstanceOfficeSilver2007LookAndFeel());
+                    //UIManager.setLookAndFeel(new org.jvnet.substance.skin.SubstanceCremeCoffeeLookAndFeel());
+                    //UIManager.setLookAndFeel(new org.jvnet.substance.skin.SubstanceMistAquaLookAndFeel());
+
+                    UIManager.setLookAndFeel(new NimbusLookAndFeel());
+//            SubstanceAutumnLookAndFeel
+//            SubstanceBusinessBlackSteelLookAndFeel
+//            SubstanceBusinessBlueSteelLookAndFeel
+//            SubstanceBusinessLookAndFeel
+//            SubstanceChallengerDeepLookAndFeel
+//            SubstanceCremeCoffeeLookAndFeel
+//            SubstanceCremeLookAndFeel
+//            SubstanceDustCoffeeLookAndFeel
+//            SubstanceDustLookAndFeel
+//            SubstanceEmeraldDuskLookAndFeel
+//            SubstanceMagmaLookAndFeel
+//            SubstanceMistAquaLookAndFeel
+//            SubstanceMistSilverLookAndFeel
+//            SubstanceModerateLookAndFeel
+//            SubstanceNebulaBrickWallLookAndFeel
+//            SubstanceNebulaLookAndFeel
+//            SubstanceOfficeBlue2007LookAndFeel
+//            SubstanceOfficeSilver2007LookAndFeel
+//            SubstanceRavenGraphiteGlassLookAndFeel
+//            SubstanceRavenGraphiteLookAndFeel
+//            SubstanceRavenLookAndFeel
+//            SubstanceSaharaLookAndFeel
+//            SubstanceTwilightLookAndFeel
+
+                    JFrame.setDefaultLookAndFeelDecorated(true);
+                } catch (Exception e) {
+                    e.printStackTrace();
+                }
                 new LoginFrame().init();
             }
         });

@@ -42,12 +42,7 @@ public class SaleDetailOrderDialog extends JDialog {
             ResultSet resultSet = dao.query("SELECT * FROM newbookstore.booksale_view");
             Utils.setTable(bookInfoTable,resultSet);
         } catch (SQLException exception) {
-            JOptionPane.showMessageDialog(this, exception.getMessage(), "数据库错误", JOptionPane.ERROR_MESSAGE);
-            try {
-                dao.deleteSaleOrder(saleOrderId);
-            } catch (SQLException exception2) {
-                JOptionPane.showMessageDialog(this, exception2.getMessage(), "数据库错误", JOptionPane.ERROR_MESSAGE);
-            }
+            JOptionPane.showMessageDialog(this, exception.getMessage(), "数据库错误，在加载booksale_view时发生错误", JOptionPane.ERROR_MESSAGE);
             System.exit(0);
         }
     }
@@ -105,26 +100,15 @@ public class SaleDetailOrderDialog extends JDialog {
                 }
 
             }
+            dao.setAutoCommit(false);
             try {
-                dao.getConnection().setAutoCommit(false);
                 dao.createSaleDetailOrder(new SaleDetailOrder(saleId, bookId, bookCount));
                 dao.updateSaleOrder(saleId);//更新销售订单中的总售价
             } catch (SQLException ex) {
                 JOptionPane.showMessageDialog(this, ex.getMessage(), "数据库错误", JOptionPane.ERROR_MESSAGE);
-                try {
-                    dao.getConnection().rollback();
-                } catch (SQLException exception1) {
-                    JOptionPane.showMessageDialog(this, exception1.getMessage(), "数据库错误", JOptionPane.ERROR_MESSAGE);
-                    System.exit(0);
-                }
+                dao.rollback();
+                dao.setAutoCommit(true);
                 return;
-            }
-            try {
-                dao.getConnection().commit();
-                dao.getConnection().setAutoCommit(true);
-            } catch (SQLException ex) {
-                JOptionPane.showMessageDialog(this, ex.getMessage(), "数据库错误", JOptionPane.ERROR_MESSAGE);
-                System.exit(0);
             }
             dispose();
         }
@@ -134,12 +118,7 @@ public class SaleDetailOrderDialog extends JDialog {
         try {
             dao.deleteSaleOrder(saleOrderId);
         } catch (SQLException ex) {
-            JOptionPane.showMessageDialog(this, ex.getMessage(), "数据库错误", JOptionPane.ERROR_MESSAGE);
-            try {
-                dao.deleteSaleOrder(saleOrderId);
-            } catch (SQLException exception2) {
-                JOptionPane.showMessageDialog(this, exception2.getMessage(), "数据库错误", JOptionPane.ERROR_MESSAGE);
-            }
+            JOptionPane.showMessageDialog(this, ex.getMessage(), "数据库错误，在取消创建详单时无法删除对应的订单", JOptionPane.ERROR_MESSAGE);
             System.exit(0);
         }
     }

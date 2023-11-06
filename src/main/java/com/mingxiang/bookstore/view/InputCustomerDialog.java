@@ -39,8 +39,8 @@ public class InputCustomerDialog extends JDialog {
             Customer customer = new Customer(customerName,customerTel,context);
             dao.inputCustomer(customer);
         } catch (SQLException ex) {
-            JOptionPane.showMessageDialog(this, ex.getMessage(), "数据库错误", JOptionPane.ERROR_MESSAGE);
-            System.exit(0);
+            JOptionPane.showMessageDialog(this, ex.getMessage(), "数据库错误，插入客户时发生错误", JOptionPane.ERROR_MESSAGE);
+            return;
         }
         JOptionPane.showMessageDialog(this, "录入成功");
         dispose();

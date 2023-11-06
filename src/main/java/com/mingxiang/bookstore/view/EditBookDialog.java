@@ -48,8 +48,8 @@ public class EditBookDialog extends JDialog {
         try {
             dao.editBookName(id, bookNameTextField.getText());
         } catch (SQLException ex) {
-            JOptionPane.showMessageDialog(this, ex.getMessage(), "数据库错误", JOptionPane.ERROR_MESSAGE);
-            System.exit(0);
+            JOptionPane.showMessageDialog(this, ex.getMessage(), "数据库错误，修改书名时发生错误", JOptionPane.ERROR_MESSAGE);
+            return;
         }
         JOptionPane.showMessageDialog(this,"修改成功","提示",JOptionPane.INFORMATION_MESSAGE);
     }
@@ -70,8 +70,8 @@ public class EditBookDialog extends JDialog {
         try {
             dao.editBookType(id, bookTypeTextField.getText());
         } catch (SQLException ex) {
-            JOptionPane.showMessageDialog(this, ex.getMessage(), "数据库错误", JOptionPane.ERROR_MESSAGE);
-            System.exit(0);
+            JOptionPane.showMessageDialog(this, ex.getMessage(), "数据库错误，修改书的类型时发生错误", JOptionPane.ERROR_MESSAGE);
+           return;
         }
         JOptionPane.showMessageDialog(this,"修改成功","提示",JOptionPane.INFORMATION_MESSAGE);
     }
@@ -92,8 +92,8 @@ public class EditBookDialog extends JDialog {
         try {
             dao.editBookAuthor(id, bookAuthorTextField.getText());
         } catch (SQLException ex) {
-            JOptionPane.showMessageDialog(this, ex.getMessage(), "数据库错误", JOptionPane.ERROR_MESSAGE);
-            System.exit(0);
+            JOptionPane.showMessageDialog(this, ex.getMessage(), "数据库错误，修改书籍作者时发生异常", JOptionPane.ERROR_MESSAGE);
+            return;
         }
         JOptionPane.showMessageDialog(this,"修改成功","提示",JOptionPane.INFORMATION_MESSAGE);
     }
@@ -114,8 +114,8 @@ public class EditBookDialog extends JDialog {
         try {
             dao.editBookPublisher(id, bookPublisherTextField.getText());
         } catch (SQLException ex) {
-            JOptionPane.showMessageDialog(this, ex.getMessage(), "数据库错误", JOptionPane.ERROR_MESSAGE);
-            System.exit(0);
+            JOptionPane.showMessageDialog(this, ex.getMessage(), "数据库错误，修改书籍出版商时出现异常", JOptionPane.ERROR_MESSAGE);
+            return;
         }
         JOptionPane.showMessageDialog(this,"修改成功","提示",JOptionPane.INFORMATION_MESSAGE);
     }
@@ -136,8 +136,8 @@ public class EditBookDialog extends JDialog {
         try {
             dao.editBookContext(id, bookContextTextArea.getText());
         } catch (SQLException ex) {
-            JOptionPane.showMessageDialog(this, ex.getMessage(), "数据库错误", JOptionPane.ERROR_MESSAGE);
-            System.exit(0);
+            JOptionPane.showMessageDialog(this, ex.getMessage(), "数据库错误，修改书籍的备注时发生异常", JOptionPane.ERROR_MESSAGE);
+            return;
         }
         JOptionPane.showMessageDialog(this,"修改成功","提示",JOptionPane.INFORMATION_MESSAGE);
     }
@@ -162,8 +162,8 @@ public class EditBookDialog extends JDialog {
         try {
             dao.editBook(id, new Book(name, author, type, publisher, context));
         } catch (SQLException ex) {
-            JOptionPane.showMessageDialog(this, ex.getMessage(), "数据库错误", JOptionPane.ERROR_MESSAGE);
-            System.exit(0);
+            JOptionPane.showMessageDialog(this, ex.getMessage(), "数据库错误，一次性修改书籍所有信息时发生错误", JOptionPane.ERROR_MESSAGE);
+            return;
         }
         JOptionPane.showMessageDialog(this,"修改成功","提示",JOptionPane.INFORMATION_MESSAGE);
         dispose();

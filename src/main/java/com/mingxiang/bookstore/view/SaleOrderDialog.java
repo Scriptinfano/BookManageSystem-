@@ -71,13 +71,18 @@ public class SaleOrderDialog extends JDialog {
             return;
         }
         SaleOrder order = new SaleOrder(theCustomerId, timestamp, context);
+        dao.setAutoCommit(false);
         try {
             dao.createSaleOrder(order);
             saleOrderId = dao.getLastSaleOrderId();
         } catch (SQLException exception) {
-            JOptionPane.showMessageDialog(this, exception.getMessage(), "错误", JOptionPane.ERROR_MESSAGE);
-            System.exit(0);
+            JOptionPane.showMessageDialog(this, exception.getMessage(), "错误，创建销售订单时错误，重建检查填写的表单项", JOptionPane.ERROR_MESSAGE);
+            dao.rollback();
+            dao.setAutoCommit(true);
+            return;
         }
+        dao.commit();
+        dao.setAutoCommit(true);
         new SaleDetailOrderDialog(this, dao, saleOrderId);
     }
 

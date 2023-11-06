@@ -33,16 +33,13 @@ public class SelectInoutScheduleDialog extends JDialog {
         super(owner);
         dao = theDao;
         initComponents();
-        selfSetComponents();
         setVisible(true);
     }
 
     /**
      * 自定义设置组件的相关内容，非designer生成的代码
      */
-    private void selfSetComponents() {
-        logTable.setDefaultRenderer(Object.class, new MyTableRenderer());
-    }
+
 
     private static final String[] dates_31 = {
             "1",
@@ -221,36 +218,33 @@ public class SelectInoutScheduleDialog extends JDialog {
     }
 
     private void changeDayComboBox(JTextField yearComboBox, JComboBox<String> monthComboBox, JComboBox<String> dayComboBox) {
+        if (beginYearTextField.getText().equals("") || endYearTextField.getText().equals("") ) {
+            JOptionPane.showMessageDialog(this, "请设定年份之后再设定月份");
+            return;
+        }
         String selectedItem = (String) monthComboBox.getSelectedItem();
 
-        if (selectedItem.equals("1") ||
-                selectedItem.equals("3") ||
-                selectedItem.equals("5") ||
-                selectedItem.equals("7") ||
-                selectedItem.equals("8") ||
-                selectedItem.equals("10") ||
-                selectedItem.equals("12")
-        ) {
-            //将一个月的天数设为31天
-            dayComboBox.removeAllItems();
-            for (String s : dates_31) dayComboBox.addItem(s);
-        } else if (selectedItem.equals("4") ||
-                selectedItem.equals("6") ||
-                selectedItem.equals("9") ||
-                selectedItem.equals("11")
-        ) {
-            //将一个月的天数设为30天
-            dayComboBox.removeAllItems();
-            for (String s : dates_30) dayComboBox.addItem(s);
-        } else if (selectedItem.equals("2")) {
-            if (Utils.isLeapYear(yearComboBox.getText())) {
-                //当前年份是闰年，二月为29天
+        switch (selectedItem) {
+            case "1", "3", "5", "7", "8", "10", "12" -> {
+                //将一个月的天数设为31天
                 dayComboBox.removeAllItems();
-                for (String s : dates_29) dayComboBox.addItem(s);
-            } else {
-                //当前年份不是闰年，二月为28天
+                for (String s : dates_31) dayComboBox.addItem(s);
+            }
+            case "4", "6", "9", "11" -> {
+                //将一个月的天数设为30天
                 dayComboBox.removeAllItems();
-                for (String s : dates_28) dayComboBox.addItem(s);
+                for (String s : dates_30) dayComboBox.addItem(s);
+            }
+            case "2" -> {
+                if (Utils.isLeapYear(yearComboBox.getText())) {
+                    //当前年份是闰年，二月为29天
+                    dayComboBox.removeAllItems();
+                    for (String s : dates_29) dayComboBox.addItem(s);
+                } else {
+                    //当前年份不是闰年，二月为28天
+                    dayComboBox.removeAllItems();
+                    for (String s : dates_28) dayComboBox.addItem(s);
+                }
             }
         }
     }
@@ -918,6 +912,9 @@ public class SelectInoutScheduleDialog extends JDialog {
 
                         //======== scrollPane1 ========
                         {
+
+                            //---- logTable ----
+                            logTable.setEnabled(false);
                             scrollPane1.setViewportView(logTable);
                         }
                         panel6.add(scrollPane1);

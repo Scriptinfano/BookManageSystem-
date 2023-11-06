@@ -37,7 +37,7 @@ call createSaleDetailOrder(2, 2, 1);
 call createSaleDetailOrder(2, 1, 3);
 call updateSaleOrder(2);
 
-
+update bookinfo set bookContext='sd' where bookId=123;
 /*
 newBookstore存储过程使用指南：
 1、先调用以下存储过程录入基础数据

@@ -49,8 +49,8 @@ public class EditCustomerDialog extends JDialog {
         try {
             dao.editCustomerContext(id, contextTextArea.getText());
         } catch (SQLException ex) {
-            JOptionPane.showMessageDialog(this, ex.getMessage(), "数据库错误", JOptionPane.ERROR_MESSAGE);
-            System.exit(0);
+            JOptionPane.showMessageDialog(this, ex.getMessage(), "数据库错误，修改客户备注时发生错误", JOptionPane.ERROR_MESSAGE);
+            return;
         }
         JOptionPane.showMessageDialog(this, "修改成功", "提示", JOptionPane.INFORMATION_MESSAGE);
 
@@ -75,8 +75,8 @@ public class EditCustomerDialog extends JDialog {
         try {
             dao.editCustomer(id, new Customer(name, tel, context));
         } catch (SQLException ex) {
-            JOptionPane.showMessageDialog(this, ex.getMessage(), "数据库错误", JOptionPane.ERROR_MESSAGE);
-            System.exit(0);
+            JOptionPane.showMessageDialog(this, ex.getMessage(), "数据库错误，编辑用户时发生错误", JOptionPane.ERROR_MESSAGE);
+            return;
         }
         JOptionPane.showMessageDialog(this, "修改成功", "提示", JOptionPane.INFORMATION_MESSAGE);
         dispose();
@@ -99,8 +99,8 @@ public class EditCustomerDialog extends JDialog {
         try {
             dao.editCustomerName(id, customerNameTextField.getText());
         } catch (SQLException ex) {
-            JOptionPane.showMessageDialog(this, ex.getMessage(), "数据库错误", JOptionPane.ERROR_MESSAGE);
-            System.exit(0);
+            JOptionPane.showMessageDialog(this, ex.getMessage(), "数据库错误，编辑客户姓名时发生错误", JOptionPane.ERROR_MESSAGE);
+            return;
         }
         JOptionPane.showMessageDialog(this, "修改成功", "提示", JOptionPane.INFORMATION_MESSAGE);
     }
@@ -121,8 +121,8 @@ public class EditCustomerDialog extends JDialog {
         try {
             dao.editCustomerTel(id, idStr);
         } catch (SQLException ex) {
-            JOptionPane.showMessageDialog(this, ex.getMessage(), "数据库错误", JOptionPane.ERROR_MESSAGE);
-            System.exit(0);
+            JOptionPane.showMessageDialog(this, ex.getMessage(), "数据库错误，编辑用户电话号码时发生错误", JOptionPane.ERROR_MESSAGE);
+           return;
         }
         JOptionPane.showMessageDialog(this, "修改成功", "提示", JOptionPane.INFORMATION_MESSAGE);
     }

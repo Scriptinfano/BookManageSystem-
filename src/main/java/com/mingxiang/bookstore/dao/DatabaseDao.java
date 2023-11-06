@@ -2,6 +2,7 @@ package com.mingxiang.bookstore.dao;
 
 import com.mingxiang.bookstore.entity.*;
 
+import javax.swing.*;
 import java.sql.*;
 import java.util.HashMap;
 
@@ -39,6 +40,37 @@ public class DatabaseDao {
         return connection;
     }
 
+    public void setAutoCommit(boolean commit) {
+        try {
+            connection.setAutoCommit(commit);
+        } catch (SQLException e) {
+            e.printStackTrace();
+            System.err.println(e.getMessage());
+            System.exit(0);
+        }
+    }
+
+    public void commit() {
+        try {
+            connection.commit();
+        } catch (SQLException e) {
+            e.printStackTrace();
+            System.err.println(e.getMessage());
+            System.exit(0);
+        }
+    }
+
+    public void rollback() {
+        try {
+            connection.rollback();
+        } catch (SQLException e) {
+            e.printStackTrace();
+            System.err.println(e.getMessage());
+            System.exit(0);
+        }
+    }
+
+
     /**
      * 测试连接
      *
@@ -60,7 +92,7 @@ public class DatabaseDao {
         if (connection != null) return;
 
         //获取连接
-        connection = DriverManager.getConnection(url, "root", thePassword);
+        connection = DriverManager.getConnection(url, userName, thePassword);
         //也可以仅传入url参数，但url参数中要包括user和passward, 例如：jdbc:mysql://ip:port/name?user=root&passward=root
 
         //获取执行sql语句的对象
@@ -99,9 +131,10 @@ public class DatabaseDao {
         preparedStatements.put("deletePurchaseOrder", connection.prepareStatement("delete from newbookstore.purchaseorder where purchaseOrderId=?;"));
         preparedStatements.put("deleteSaleOrder", connection.prepareStatement("delete from newbookstore.salesorder where salesOrderId=?;"));
 
-        preparedStatements.put("bookView", connection.prepareStatement("select * from newbookstore.bookinfo"));
-        preparedStatements.put("customerView", connection.prepareStatement("select * from newbookstore.customer"));
-        preparedStatements.put("merchantView", connection.prepareStatement("select * from newbookstore.wholesaler"));
+        //TODO 在这里更改要显示的视图
+        preparedStatements.put("bookView", connection.prepareStatement("select * from newbookstore.bookinfo_view"));
+        preparedStatements.put("customerView", connection.prepareStatement("select * from newbookstore.customer_view"));
+        preparedStatements.put("merchantView", connection.prepareStatement("select * from newbookstore.merchant_view"));
         preparedStatements.put("purchaseView", connection.prepareStatement("select * from newbookstore.purchase_view"));
         preparedStatements.put("saleView", connection.prepareStatement("select * from newbookstore.sale_view"));
         preparedStatements.put("inoutView", connection.prepareStatement("select * from newbookstore.inoutschedule"));
@@ -113,77 +146,88 @@ public class DatabaseDao {
         PreparedStatement statement = preparedStatements.get("editBookName");
         statement.setInt(2, id);
         statement.setString(1, name);
-        statement.executeUpdate();
+        if(statement.executeUpdate()==0)
+            throw new SQLException("没有找到对应的条目");
     }
 
     public void editBookType(int id, String type) throws SQLException {
         PreparedStatement statement = preparedStatements.get("editBookType");
         statement.setInt(2, id);
         statement.setString(1, type);
-        statement.executeUpdate();
+        if(statement.executeUpdate()==0)
+            throw new SQLException("没有找到对应的条目");
     }
 
     public void editBookAuthor(int id, String author) throws SQLException {
         PreparedStatement statement = preparedStatements.get("editBookAuthor");
         statement.setInt(2, id);
         statement.setString(1, author);
-        statement.executeUpdate();
+        if(statement.executeUpdate()==0)
+            throw new SQLException("没有找到对应的条目");
     }
 
     public void editBookPublisher(int id, String publisher) throws SQLException {
         PreparedStatement statement = preparedStatements.get("editBookPublisher");
         statement.setInt(2, id);
         statement.setString(1, publisher);
-        statement.executeUpdate();
+        if(statement.executeUpdate()==0)
+            throw new SQLException("没有找到对应的条目");
     }
 
     public void editBookContext(int id, String context) throws SQLException {
         PreparedStatement statement = preparedStatements.get("editBookContext");
         statement.setInt(2, id);
         statement.setString(1, context);
-        statement.executeUpdate();
+        if(statement.executeUpdate()==0)
+            throw new SQLException("没有找到对应的条目");
     }
 
     public void editCustomerContext(int id, String context) throws SQLException {
         PreparedStatement statement = preparedStatements.get("editCustomerContext");
         statement.setInt(2, id);
         statement.setString(1, context);
-        statement.executeUpdate();
+        if(statement.executeUpdate()==0)
+            throw new SQLException("没有找到对应的条目");
     }
 
     public void editCustomerName(int id, String name) throws SQLException {
         PreparedStatement statement = preparedStatements.get("editCustomerName");
         statement.setInt(2, id);
         statement.setString(1, name);
-        statement.executeUpdate();
+        if(statement.executeUpdate()==0)
+            throw new SQLException("没有找到对应的条目");
     }
 
     public void editCustomerTel(int id, String tel) throws SQLException {
         PreparedStatement statement = preparedStatements.get("editCustomerTel");
         statement.setInt(2, id);
         statement.setString(1, tel);
-        statement.executeUpdate();
+        if(statement.executeUpdate()==0)
+            throw new SQLException("没有找到对应的条目");
     }
 
     public void editMerchantContext(int id, String context) throws SQLException {
         PreparedStatement statement = preparedStatements.get("editMerchantContext");
         statement.setInt(2, id);
         statement.setString(1, context);
-        statement.executeUpdate();
+        if(statement.executeUpdate()==0)
+            throw new SQLException("没有找到对应的条目");
     }
 
     public void editMerchantName(int id, String name) throws SQLException {
         PreparedStatement statement = preparedStatements.get("editMerchantName");
         statement.setInt(2, id);
         statement.setString(1, name);
-        statement.executeUpdate();
+        if(statement.executeUpdate()==0)
+            throw new SQLException("没有找到对应的条目");
     }
 
     public void editMerchantTel(int id, String tel) throws SQLException {
         PreparedStatement statement = preparedStatements.get("editMerchantTel");
         statement.setInt(2, id);
         statement.setString(1, tel);
-        statement.executeUpdate();
+        if(statement.executeUpdate()==0)
+            throw new SQLException("没有找到对应的条目");
     }
 
 
@@ -205,6 +249,7 @@ public class DatabaseDao {
 
     /**
      * 在调用预编译好的SQL语句时使用此接口，以下是已经预编译好的sql语句
+     *
      * @param operateName 操作名称
      * @return {@link PreparedStatement}
      */
@@ -221,7 +266,6 @@ public class DatabaseDao {
      */
     public ResultSet query(String sql) throws SQLException {
         return sqlStatement.executeQuery(sql);
-
     }
 
 
@@ -309,7 +353,8 @@ public class DatabaseDao {
     public void updateSaleOrder(int saleOrderId) throws SQLException {
         CallableStatement sta = callableStatements.get("updateSaleOrder");
         sta.setInt(1, saleOrderId);
-        sta.execute();
+        if(sta.executeUpdate()==0)
+            throw new SQLException("没有找到对应的条目");
 
     }
 
@@ -325,7 +370,9 @@ public class DatabaseDao {
         CallableStatement sta = callableStatements.get("updateSalePrice");
         sta.setInt(1, bookId);
         sta.setFloat(2, price);
-        sta.execute();
+        if(sta.executeUpdate()==0)
+            throw new SQLException("没有找到对应的条目");
+
     }
 
     public void editBook(int id, Book book) throws SQLException {
@@ -335,7 +382,8 @@ public class DatabaseDao {
         sta.setString(3, book.getType());
         sta.setString(4, book.getAuthor());
         sta.setString(5, book.getContext());
-        sta.execute();
+        if(sta.executeUpdate()==0)
+            throw new SQLException("没有找到对应的条目");
     }
 
     public void editCustomer(int id, Customer customer) throws SQLException {
@@ -344,7 +392,8 @@ public class DatabaseDao {
         sta.setString(2, customer.getName());
         sta.setString(3, customer.getPhone());
         sta.setString(4, customer.getContext());
-        sta.execute();
+        if(sta.executeUpdate()==0)
+            throw new SQLException("没有找到对应的条目");
     }
 
     public void editMerchant(int id, Merchant merchant) throws SQLException {
@@ -353,7 +402,8 @@ public class DatabaseDao {
         sta.setString(2, merchant.getContext());
         sta.setString(3, merchant.getName());
         sta.setString(4, merchant.getContact());
-        sta.execute();
+        if(sta.executeUpdate()==0)
+            throw new SQLException("没有找到对应的条目");
     }
 
 

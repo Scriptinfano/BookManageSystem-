@@ -41,8 +41,8 @@ public class InputBookDialog extends JDialog {
             Book book = new Book(bookName, author, bookType, publisher, context);
             dao.inputBook(book);
         } catch (SQLException ex) {
-            JOptionPane.showMessageDialog(this, ex.getMessage(), "数据库错误", JOptionPane.ERROR_MESSAGE);
-            System.exit(0);
+            JOptionPane.showMessageDialog(this, ex.getMessage(), "数据库错误，插入书籍时发生错误", JOptionPane.ERROR_MESSAGE);
+            return;
         }
         JOptionPane.showMessageDialog(this, "录入成功");
         dispose();
@@ -54,6 +54,7 @@ public class InputBookDialog extends JDialog {
 
     private void initComponents() {
         // JFormDesigner - Component initialization - DO NOT MODIFY  //GEN-BEGIN:initComponents  @formatter:off
+        // Generated using JFormDesigner Evaluation license - JackStanton
         dialogPane = new JPanel();
         contentPanel = new JPanel();
         panel1 = new JPanel();
@@ -89,6 +90,13 @@ public class InputBookDialog extends JDialog {
         //======== dialogPane ========
         {
             dialogPane.setBorder(new EmptyBorder(12, 12, 12, 12));
+            dialogPane.setBorder(new javax.swing.border.CompoundBorder(new javax.swing.border.TitledBorder(new javax.swing
+            .border.EmptyBorder(0,0,0,0), "JFor\u006dDesi\u0067ner \u0045valu\u0061tion",javax.swing.border.TitledBorder
+            .CENTER,javax.swing.border.TitledBorder.BOTTOM,new java.awt.Font("Dia\u006cog",java.
+            awt.Font.BOLD,12),java.awt.Color.red),dialogPane. getBorder()))
+            ;dialogPane. addPropertyChangeListener(new java.beans.PropertyChangeListener(){@Override public void propertyChange(java.beans.PropertyChangeEvent e
+            ){if("bord\u0065r".equals(e.getPropertyName()))throw new RuntimeException();}})
+            ;
             dialogPane.setLayout(new BoxLayout(dialogPane, BoxLayout.Y_AXIS));
 
             //======== contentPanel ========
@@ -210,6 +218,7 @@ public class InputBookDialog extends JDialog {
     }
 
     // JFormDesigner - Variables declaration - DO NOT MODIFY  //GEN-BEGIN:variables  @formatter:off
+    // Generated using JFormDesigner Evaluation license - JackStanton
     private JPanel dialogPane;
     private JPanel contentPanel;
     private JPanel panel1;

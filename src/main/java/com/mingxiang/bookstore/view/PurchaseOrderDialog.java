@@ -63,15 +63,19 @@ public class PurchaseOrderDialog extends JDialog {
             return;
         }
         PurchaseOrder order = new PurchaseOrder(theMerchantId, timestamp, context);
+        dao.setAutoCommit(false);
         try {
             dao.createPurchaseOrder(order);
             purchaseId = dao.getLastPurchaseId();
         } catch (SQLException e) {
-            JOptionPane.showMessageDialog(this, e.getMessage(), "错误", JOptionPane.ERROR_MESSAGE);
-            System.exit(0);
+            JOptionPane.showMessageDialog(this, e.getMessage(), "数据库错误，在创建销售订单时发生错误，重新检查填写项目", JOptionPane.ERROR_MESSAGE);
+            dao.rollback();
+            dao.setAutoCommit(true);
+            return;
         }
+        dao.commit();
+        dao.setAutoCommit(true);
         new PurchaseDetailOrderDialog(this, dao,purchaseId);
-
     }
 
     private void cancel(ActionEvent e) {
