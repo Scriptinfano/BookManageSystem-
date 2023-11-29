@@ -2,7 +2,6 @@ package com.mingxiang.bookstore.dao;
 
 import com.mingxiang.bookstore.entity.*;
 
-import javax.swing.*;
 import java.sql.*;
 import java.util.HashMap;
 
@@ -28,7 +27,9 @@ public class DatabaseDao {
         try {
             Class.forName(driverPath);
         } catch (ClassNotFoundException e) {
-            throw new RuntimeException(e);
+            System.err.println("驱动加载失败:" + e.getMessage());
+            e.printStackTrace();
+            System.exit(0);
         }
 
     }
